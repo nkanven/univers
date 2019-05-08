@@ -178,7 +178,7 @@ def update_description_with_tags_url(row):
                 print("Summarizing description...")
                 f_description = row['s_description'].split("</p>")
                 image_html = f_description[0]+"</p>\n"
-                referer_url = "\n\n<p><a href='"+row['s_url']+"' title='"+row['s_title']+"' target='_blank'>Lire l'article en entier en cliquant ici</a></p>"
+                referer_url = "\n\n<p><a href='"+row['s_url']+"' title='"+row['s_title']+"' target='_blank' rel='nofollow'>Lire l'article en entier en cliquant ici</a></p>"
                 
                 print(referer_url)
                 ts = TextSummarizer()
