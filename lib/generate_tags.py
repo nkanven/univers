@@ -44,7 +44,7 @@ articles.rename(columns={"i_category":"category"}, inplace=True)
 #Preprocessing
 
 #Build stopwords list
-stop_words = [sw.replace("\n", "") for sw in open("E:/Projects/Univers/stopwords-fr.txt", encoding="utf-8")]
+stop_words = [sw.replace("\n", "") for sw in open(config.stopwords_file_path, encoding="utf-8")]
 sw = stop_words
 stopWords_fr = set(stopwords.words('french'))
 stopWords_en = set(stopwords.words('english'))

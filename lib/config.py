@@ -12,3 +12,4 @@ dev_post_key = 'bmthbnZlbjpZRFg4IDRWMGIgQmNyYSBnZ1I2IGNBUmogY0syYw=='
 prod_post_key = 'a29yYXZveG5ld3M6eU02aiBFc2JEIGJ6U3QganFTMyBVOHdpIGFBajI='
 dev_post_url = 'http://localhost/wordpress/wp-json/wp/v2/posts'
 prod_post_url = 'https://koravox.com/wp-json/wp/v2/posts'
+stopwords_file_path = "E:/Projects/Univers/stopwords-fr.txt"
