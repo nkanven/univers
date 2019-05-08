@@ -5,10 +5,11 @@ import pandas as pd
 import post
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
+import config
 
 
 #MySQL params init
-db = MySQLdb.connect('localhost', 'root', '', 'univers')
+db = MySQLdb.connect(config.dbhost, config.dbuser, config.dbpassword, config.dbname)
 db.set_character_set('utf8')
 # prepare a cursor object using cursor() method
 cursor = db.cursor()
