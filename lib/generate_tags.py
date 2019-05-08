@@ -18,7 +18,7 @@ cursor.execute('SET CHARACTER SET utf8;')
 cursor.execute('SET character_set_connection=utf8;')
 
 #df = pd.read_csv("E:/Projects/Univers/extra/articles.csv", encoding="utf-8")
-engine = sqlalchemy.create_engine("mysql+pymysql://"+config.dbuser+":"+config.dbpassword+"@"+config.dbhost":3306/"+config.dbname+")
+engine = sqlalchemy.create_engine("mysql+pymysql://"+config.dbuser+":"+config.dbpassword+"@"+config.dbhost+":3306/"+config.dbname+")
 
 
 df = pd.read_sql_table("c_items", engine)
