@@ -60,17 +60,15 @@ class models():
             s_author,
             s_url,
             source,
-            i_category,
-            summary)
-        VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')""".format(
+            i_category)
+        VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}')""".format(
             MySQLdb.escape_string(item[2]).decode("utf-8"),
             MySQLdb.escape_string(item[1]).decode("utf-8"),
             MySQLdb.escape_string(description).decode("utf-8"),
             MySQLdb.escape_string(item[0]).decode("utf-8"),
             MySQLdb.escape_string(item[5]).decode("utf-8"),
             MySQLdb.escape_string(source).decode("utf-8"),
-            item[4],
-            MySQLdb.escape_string(item[-1]).decode("utf-8"))
+            item[4])
         try:
             self.cursor.execute(sql)
             self.db.commit()
@@ -80,7 +78,7 @@ class models():
 
     def get_items(self):
         # sql = """SELECT * FROM c_items where source = 'youtube'"""
-        sql = """SELECT * FROM `c_items` WHERE source <> "youtube" AND is_posted=0 and summary <> ''"""
+        sql = """SELECT * FROM `c_items` WHERE source <> "youtube" AND is_posted=0 and summary IS NOT NULL"""
         self.cursor.execute(sql)
 
         return self.cursor.fetchall()

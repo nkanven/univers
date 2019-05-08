@@ -53,12 +53,12 @@ def get_wordpress_tags(url):
     return tags_dic, tags_list
 
 
-def create_tag(tag, url):
+def create_tag(tag, url, auth_key):
     try:
         payload = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"name\"\r\n\r\n"+tag+"\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--"
         headers = {
             'content-type': "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-            'authorization': "Basic a29yYXZveG5ld3M6eU02aiBFc2JEIGJ6U3QganFTMyBVOHdpIGFBajI="
+            'authorization': "Basic "+auth_key
             }
         while True:
             try:

@@ -53,7 +53,7 @@ if args.action == "scrape":
         others = parse.parse_others(args.batch)
         if others:
             for other in others:
-                Model.insert_item(other, other[-2])
+                Model.insert_item(other, other[-1])
                 scraped_links.append(other[5])
                 with open("scraped_links.pkl", "wb") as pkl:
                     pickle.dump(scraped_links, pkl)

@@ -75,16 +75,6 @@ def scrape(batch):
                             clean_title = unidecode(title).replace(" ", "-")
                             image_html = "<p><img src='"+image+"' alt='"+clean_title+"'></p>\n"
                             description = image_html+"\n"+f_description.get_text()
-                            ts = TextSummarizer()
-                            ts.input_text(f_description.get_text())
-                            words = ts.tokenize_sentence()
-                            freqTable = ts.cal_freq(words)
-                            sentenceValue = ts.compute_sentence(freqTable)
-                            avg = ts.sumAvg(sentenceValue)
-                            summary = ts.print_summary(sentenceValue, avg)
-                            analytics_pattern = re.compile("\(.+}\);")
-                            summary = analytics_pattern.sub("", summary)
-                            summary = image_html + summary
 
                             # data = title+" "+description.replace("\n", "")+","+str(key)
                             data.append(
@@ -95,8 +85,7 @@ def scrape(batch):
                                     description,
                                     key,
                                     link,
-                                    "camer.be",
-                                    summary
+                                    "camer.be"
                                 ]
                             )
 

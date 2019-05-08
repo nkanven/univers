@@ -4,7 +4,6 @@ from requests.exceptions import ConnectionError
 import re
 import pickle
 from unidecode import unidecode
-from lib.text_summarizer import TextSummarizer
 import traceback
 
 
@@ -77,16 +76,6 @@ def scrape(batch):
                         description = image_html+f_description
                         remove_taboola = re.compile("window._taboola(.*\n)*")
                         description = remove_taboola.sub("", description)
-                        ts = TextSummarizer()
-                        ts.input_text(f_description)
-                        words = ts.tokenize_sentence()
-                        freqTable = ts.cal_freq(words)
-                        sentenceValue = ts.compute_sentence(freqTable)
-                        avg = ts.sumAvg(sentenceValue)
-                        summary = ts.print_summary(sentenceValue, avg)
-                        analytics_pattern = re.compile("\(.+}\);")
-                        summary = analytics_pattern.sub("", summary)
-                        summary = image_html+summary
 
                         data.append(
                             [
@@ -96,8 +85,7 @@ def scrape(batch):
                                 description,
                                 key,
                                 article_url,
-                                "actucameroun.com",
-                                summary
+                                "actucameroun.com"
                             ]
                         )
 
