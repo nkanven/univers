@@ -5,3 +5,4 @@ modules/__pycache__
 google_email_scrape.py
 Doualazoom.csv
 lib/__pycache__
+lib/config.py
