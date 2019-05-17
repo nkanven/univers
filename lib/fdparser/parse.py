@@ -1,7 +1,7 @@
 """Wordpress rss feed parser method."""
 import feedparser
 from extra import camerbe
-from modules import actucameroun_com
+from modules import actucameroun_com, news_abidjan_net
 import re
 
 def wordpress(link):
@@ -63,8 +63,7 @@ def youtube(link):
 
 def parse_others(batch):
     bulky = [
-        camerbe.scrape(batch),
-        actucameroun_com.scrape(batch)
+        news_abidjan_net.scrape(batch)
     ]
     bulky_data = list()
 

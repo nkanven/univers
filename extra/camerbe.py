@@ -67,14 +67,20 @@ def scrape(batch):
                             article_page = requests.get(link)
                             article_soup = BeautifulSoup(article_page.content, "html.parser")
                             f_article = article_soup.find("article")
-                            image = f_article.find("img")["data-src"]
+                            try:
+                                og_img = f_article.find("meta", property="og:image")
+                                image = og_img["content"]
+                            except TypeError:
+                                break
+
                             title = article_soup.find("h1").get_text().replace(",", "")
                             f_description = f_article.find(
                                 class_=re.compile("text-justify info")
                             )
-                            clean_title = unidecode(title).replace(" ", "-")
+                            """clean_title = unidecode(title).replace(" ", "-")
                             image_html = "<p><img src='"+image+"' alt='"+clean_title+"'></p>\n"
-                            description = image_html+"\n"+f_description.get_text()
+                            description = image_html+"\n"+f_description.get_text()"""
+                            description = f_description.get_text()
 
                             # data = title+" "+description.replace("\n", "")+","+str(key)
                             data.append(
@@ -85,6 +91,8 @@ def scrape(batch):
                                     description,
                                     key,
                                     link,
+                                    image,
+                                    "cameroun",
                                     "camer.be"
                                 ]
                             )
@@ -95,6 +103,7 @@ def scrape(batch):
                             break
                         except ConnectionError:
                             print("Max retries exceed. Retrying again")
-                        except AttributeError as e:
+                        except (AttributeError, KeyError) as e:
                             print(e)
+                            break
     return data

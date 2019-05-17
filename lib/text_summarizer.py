@@ -47,9 +47,9 @@ class TextSummarizer:
                for index, wordValue in enumerate(freqTable, start=1):
                     if wordValue in sentence.lower():
                          if sentence in sentenceValue:
-                              sentenceValue[sentence] += index
+                              sentenceValue[sentence] += freqTable[wordValue]
                          else:
-                              sentenceValue[sentence] = index
+                              sentenceValue[sentence] = freqTable[wordValue]
           return sentenceValue
          
            
@@ -65,7 +65,13 @@ class TextSummarizer:
 
      def print_summary(self,sentenceValue,average):
           summary = ''
+          adjuster = 1.5
           for sentence in self.sentences:
-               if (sentence in sentenceValue) and (sentenceValue[sentence] > (1.5 * average)):
+               if (sentence in sentenceValue) and (sentenceValue[sentence] > (adjuster * average)):
                     summary += " " + sentence
+
+               if summary == "":
+                    adjuster -= 0.1
+               else:
+                    break
           return summary

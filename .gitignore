@@ -6,3 +6,5 @@ google_email_scrape.py
 Doualazoom.csv
 lib/__pycache__
 lib/config.py
+scraped_links.pkl
+**/__pycache__

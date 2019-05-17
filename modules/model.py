@@ -60,15 +60,19 @@ class models():
             s_author,
             s_url,
             source,
-            i_category)
-        VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}')""".format(
+            i_category,
+            image,
+            country)
+        VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')""".format(
             MySQLdb.escape_string(item[2]).decode("utf-8"),
             MySQLdb.escape_string(item[1]).decode("utf-8"),
             MySQLdb.escape_string(description).decode("utf-8"),
             MySQLdb.escape_string(item[0]).decode("utf-8"),
             MySQLdb.escape_string(item[5]).decode("utf-8"),
             MySQLdb.escape_string(source).decode("utf-8"),
-            item[4])
+            item[4],
+            MySQLdb.escape_string(item[6]).decode("utf-8"),
+            MySQLdb.escape_string(item[7]).decode("utf-8"))
         try:
             self.cursor.execute(sql)
             self.db.commit()

@@ -63,17 +63,18 @@ def scrape(batch):
                         title = article.find(class_="td-post-title")\
                             .find("h1").get_text()
                         image = article.find(class_="td-post-featured-image").find("img")["src"]
-                        clean_title_slug = re.sub(
+                        """clean_title_slug = re.sub(
                                 '[^a-zA-Z0-9À-ÿ- \n\.]',
                                 ' ',
                                 unidecode(title)
                             ).replace(" ", "-")
                         image_html = "<p><img src='"+image+"' alt='"\
                             + clean_title_slug + "'></p>\n"
+                        """
                         f_description = article.find(
                             class_="td-post-content"
                         ).get_text()
-                        description = image_html+f_description
+                        # description = image_html+f_description
                         remove_taboola = re.compile("window._taboola(.*\n)*")
                         description = remove_taboola.sub("", description)
 
@@ -85,6 +86,8 @@ def scrape(batch):
                                 description,
                                 key,
                                 article_url,
+                                image,
+                                "cameroun",
                                 "actucameroun.com"
                             ]
                         )

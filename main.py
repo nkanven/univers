@@ -53,6 +53,7 @@ if args.action == "scrape":
         others = parse.parse_others(args.batch)
         if others:
             for other in others:
+                print("Storing article {}".format(other[5]))
                 Model.insert_item(other, other[-1])
                 scraped_links.append(other[5])
                 with open("scraped_links.pkl", "wb") as pkl:
