@@ -1,7 +1,6 @@
 .mypy_cache
 .vscode
 yo.json
-modules/__pycache__
 google_email_scrape.py
 Doualazoom.csv
 lib/__pycache__
