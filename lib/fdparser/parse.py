@@ -61,9 +61,11 @@ def youtube(link):
     return youtube_data
 
 
-def parse_others(batch):
+def parse_others(batch, scrape_links):
     bulky = [
-        news_abidjan_net.scrape(batch)
+        news_abidjan_net.scrape(batch, scrape_links),
+        actucameroun_com.scrape(batch, scrape_links),
+        camerbe.scrape(batch, scrape_links)
     ]
     bulky_data = list()
 
