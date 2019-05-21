@@ -68,7 +68,7 @@ def summarize_description(row):
     freqTable = ts.cal_freq(words)
     sentenceValue = ts.compute_sentence(freqTable)
     # avg = ts.sumAvg(sentenceValue)
-    summary = ts.print_summary(sentenceValue, 4)
+    summary = ts.print_summary(sentenceValue, 5)
     analytics_pattern = re.compile("\(.+}\);")
     summary = analytics_pattern.sub("", summary)
     rows = [
