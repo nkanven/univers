@@ -5,9 +5,10 @@ import re
 import pickle
 from unidecode import unidecode
 from lib.text_summarizer import TextSummarizer
+from lib import config
 
 
-def scrape(batch):
+def scrape(batch, scrape_links):
     website_url = "https://www.camer.be"
 
     """
@@ -29,11 +30,12 @@ def scrape(batch):
     categories[7] = website_url+"/1/14/21/cameroun-cameroon.html"
 
     try:
-        with open("scraped_links.pkl", "rb") as pkcl:
+        with open(scrape_links, "rb") as pkcl:
             scraped_links = pickle.load(pkcl)
     except Exception:
         scraped_links = []
     print(scraped_links)
+
     data = list()
     i = 1
 
@@ -68,9 +70,10 @@ def scrape(batch):
                             article_soup = BeautifulSoup(article_page.content, "html.parser")
                             f_article = article_soup.find("article")
                             try:
-                                og_img = f_article.find("meta", property="og:image")
+                                og_img = article_soup.find("meta", property="og:image")
                                 image = og_img["content"]
-                            except TypeError:
+                            except TypeError as e:
+                                print(e)
                                 break
 
                             title = article_soup.find("h1").get_text().replace(",", "")
@@ -97,6 +100,7 @@ def scrape(batch):
                                 ]
                             )
 
+                            print("{} out of {}".format(i, batch))
                             if i == batch:
                                 return data
                             i += 1

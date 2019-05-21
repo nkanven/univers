@@ -7,7 +7,7 @@ from unidecode import unidecode
 import traceback
 
 
-def scrape(batch):
+def scrape(batch, scrape_links):
     website_url = "https://actucameroun.com"
 
     """
@@ -28,7 +28,7 @@ def scrape(batch):
     categories[8] = website_url+"/category/sport/"
 
     try:
-        with open("scraped_links.pkl", "rb") as pkcl:
+        with open(scrape_links, "rb") as pkcl:
             scraped_links = pickle.load(pkcl)
     except Exception:
         scraped_links = []
@@ -76,7 +76,7 @@ def scrape(batch):
                         ).get_text()
                         # description = image_html+f_description
                         remove_taboola = re.compile("window._taboola(.*\n)*")
-                        description = remove_taboola.sub("", description)
+                        description = remove_taboola.sub("", f_description)
 
                         data.append(
                             [
@@ -104,6 +104,6 @@ def scrape(batch):
                         )
                     except AttributeError:
                         scraped_links.append(article_url)
-                        with open("scraped_links.pkl", "wb") as pkl:
+                        with open(scrape_links, "wb") as pkl:
                             pickle.dump(scraped_links, pkl)
                         print(traceback.format_exc())
