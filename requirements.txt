@@ -1,0 +1,7 @@
+PyMySQL
+pytube
+mysqlclient
+feedparser
+nltk
+
+apt install python3-mysqldb
