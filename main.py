@@ -88,6 +88,7 @@ if args.action == "post":
             "token": config.prod_key
         }
     items = Model.get_items()
+    i = 1
     for item in items:
         # Check if item is ready for post
         if item[10] == 1:
@@ -117,4 +118,7 @@ if args.action == "post":
                 if response:
                     Model.update_item(item[0])
                     print("sleeping for 1min")
+                    if args.batch == i:
+                        break
+                    i += 1
                     time.sleep(60)
