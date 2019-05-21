@@ -83,6 +83,6 @@ class TextSummarizer:
                tk[sentenceValue[sentence]] = sentence
           
           for key in sorted(tk.keys(), reverse=True)[:max_sentence]:
-               summary += tk[key]+"\n"
+               summary += "<p>"+tk[key]+"</p>\n"
           
           return summary
