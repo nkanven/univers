@@ -4,6 +4,7 @@ from modules.journalducameroun_com import get_elements
 from modules.model import models
 from lib import post, config
 from lib.fdparser import parse
+from unidecode import unidecode
 import argparse
 import pickle
 import time
@@ -78,13 +79,13 @@ if args.action == "scrape":
 if args.action == "post":
     if args.env == "dev":
         post_params = {
-            "url": config.dev_post_url,
-            "token": config.dev_post_key
+            "url": config.dev_url,
+            "token": config.dev_key
         }
     else:
         post_params = {
-            "url": config.prod_post_url,
-            "token": config.prod_post_key
+            "url": config.prod_url,
+            "token": config.prod_key
         }
     items = Model.get_items()
     for item in items:
@@ -92,14 +93,26 @@ if args.action == "post":
         if item[10] == 1:
             # Check if item have not been posted and post it
             if item[11] == 1 and item[12] == 0:
+                categories = list()
+                if item[5] == "youtube":
+                    categories = ["1406"]
+
+                categories.append(str(post.get_category_id(
+                        post_params["url"],
+                        post_params["token"],
+                        unidecode(unidecode(item[-1]).lower())
+                    ))
+                )
                 item_dic = {
                     "title": item[2],
-                    "description": item[-1],
-                    "tags": item[9]+",1394",
-                    "slug": item[2]
+                    "description": item[14],
+                    "tags": item[9],
+                    "slug": item[2],
+                    "category": ",".join(categories)
                 }
-                print(item_dic)
+
                 response = post.wordpress_create_post(item_dic, post_params)
+                print("{} successfully posted: ".format(item_dic["title"]))
                 print(response)
                 if response:
                     Model.update_item(item[0])

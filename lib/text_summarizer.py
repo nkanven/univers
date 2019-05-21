@@ -63,7 +63,7 @@ class TextSummarizer:
           return average
 
 
-     def print_summary(self,sentenceValue,average):
+     """def print_summary(self,sentenceValue,average):
           summary = ''
           adjuster = 1.5
           for sentence in self.sentences:
@@ -74,4 +74,15 @@ class TextSummarizer:
                     adjuster -= 0.1
                else:
                     break
+          return summary"""
+     
+     def print_summary(self, sentenceValue, max_sentence):
+          summary = ''
+          tk = dict()
+          for sentence in self.sentences:
+               tk[sentenceValue[sentence]] = sentence
+          
+          for key in sorted(tk.keys(), reverse=True)[:max_sentence]:
+               summary += tk[key]+"\n"
+          
           return summary
