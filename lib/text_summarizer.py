@@ -80,7 +80,10 @@ class TextSummarizer:
           summary = ''
           tk = dict()
           for sentence in self.sentences:
-               tk[sentenceValue[sentence]] = sentence
+               try:
+                    tk[sentenceValue[sentence]] = sentence
+               except KeyError:
+                    pass
           
           for key in sorted(tk.keys(), reverse=True)[:max_sentence]:
                summary += "<p>"+tk[key]+"</p>\n"
