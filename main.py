@@ -45,19 +45,24 @@ Model = models()
 
 if args.action == "scrape":
     while True:
+        scrape_links = config.saved_scraped_path
+        
+        if args.env == "ml":
+            scrape_links = config.ml_saved_scraped_path
+
         try:
-            with open("scraped_links.pkl", "rb") as pkcl:
+            with open(scrape_links, "rb") as pkcl:
                 scraped_links = pickle.load(pkcl)
         except Exception:
             scraped_links = []
 
-        others = parse.parse_others(args.batch)
+        others = parse.parse_others(args.batch, scrape_links)
         if others:
             for other in others:
                 print("Storing article {}".format(other[5]))
-                Model.insert_item(other, other[-1])
+                Model.insert_item(other, other[-1], args.env)
                 scraped_links.append(other[5])
-                with open("scraped_links.pkl", "wb") as pkl:
+                with open(scrape_links, "wb") as pkl:
                     pickle.dump(scraped_links, pkl)
         print("Done with others")
 
@@ -67,13 +72,13 @@ if args.action == "scrape":
             if link[2] == "wordpress":
                 for witem in parse.wordpress(link[1]):
                     witem.append(link[3])
-                    Model.insert_item(witem, witem[-1])
+                    Model.insert_item(witem, witem[-1], args.env)
             print("Done with wordpress")
 
             if link[2] == "youtube":
                 for yitem in parse.youtube(link[1]):
                     yitem.append(link[3])
-                    Model.insert_item(yitem, 'youtube')
+                    Model.insert_item(yitem, 'youtube', args.env)
             print("Done with youtube")"""
 
 if args.action == "post":

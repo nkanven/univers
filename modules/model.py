@@ -40,7 +40,7 @@ class models():
 
         return result
 
-    def insert_item(self, item, source=None):
+    def insert_item(self, item, source=None, env=None):
         """Insert item into items table.
 
         Arguments:
@@ -49,11 +49,16 @@ class models():
 
         description = item[3]
 
+        table = "c_items"
+
+        if env == "ml":
+            table = "items"
+
         if source == "youtube":
             description = item[5]+"\n"+item[3]
         
         print(source, item[2])
-        sql = """INSERT INTO c_items(
+        sql = """INSERT INTO """+table+"""(
             s_id,
             s_title,
             s_description,
@@ -78,7 +83,8 @@ class models():
             self.db.commit()
         except IntegrityError:
             pass
-    
+        except Exception:
+            pass
 
     def get_items(self):
         # sql = """SELECT * FROM c_items where source = 'youtube'"""

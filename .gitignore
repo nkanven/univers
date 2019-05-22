@@ -3,7 +3,8 @@
 yo.json
 google_email_scrape.py
 Doualazoom.csv
-lib/__pycache__
 lib/config.py
 scraped_links.pkl
-**/__pycache__
+**/__pycache__/
+lib/fdparser/__pycache__/
+ml_scraped_links.pkl

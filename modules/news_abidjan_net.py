@@ -5,9 +5,10 @@ import re
 import pickle
 from unidecode import unidecode
 from lib.text_summarizer import TextSummarizer
+from lib import config
 
 
-def scrape(batch):
+def scrape(batch, scrape_links):
     website_url = "https://news.abidjan.net/"
 
     """
@@ -30,7 +31,7 @@ def scrape(batch):
     categories[8] = website_url+"rubriques/sport.asp"
 
     try:
-        with open("scraped_links.pkl", "rb") as pkcl:
+        with open(scrape_links, "rb") as pkcl:
             scraped_links = pickle.load(pkcl)
     except Exception:
         scraped_links = []
