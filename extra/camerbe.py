@@ -49,7 +49,7 @@ def scrape(batch, scrape_links):
 
         soup = BeautifulSoup(page.content, "html.parser")
         article_section = soup.find(class_=re.compile("col-md-8 col-sm-8 col-lg-8 col-xm-8"))
-
+        print(val)
         for sections in article_section:
 
             if isinstance(sections, element.Tag):

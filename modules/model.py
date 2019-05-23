@@ -83,7 +83,8 @@ class models():
             self.db.commit()
         except IntegrityError:
             pass
-    
+        except Exception:
+            pass
 
     def get_items(self):
         # sql = """SELECT * FROM c_items where source = 'youtube'"""

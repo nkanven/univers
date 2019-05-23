@@ -126,4 +126,4 @@ if args.action == "post":
                     if args.batch == i:
                         break
                     i += 1
-                    time.sleep(60)
+                    time.sleep(1)

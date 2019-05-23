@@ -66,8 +66,7 @@ def parse_others(batch, scrape_links):
     bulky = [
         seneweb_com.scrape(batch, scrape_links),
         news_abidjan_net.scrape(batch, scrape_links),
-        actucameroun_com.scrape(batch, scrape_links),
-        camerbe.scrape(batch, scrape_links)
+        actucameroun_com.scrape(batch, scrape_links)
     ]
     bulky_data = list()
 
