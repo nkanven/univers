@@ -90,7 +90,7 @@ def create_tag(tag, url, auth_key):
 
 
 def get_category_id(url, auth_key, cat_name):
-    url = url+"categories"
+    url = url+"categories?page=1&per_page=100"
     payload = ""
     headers = {
         'content-type': "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
