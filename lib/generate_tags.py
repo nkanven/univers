@@ -196,9 +196,9 @@ def update_description_with_tags_url(row):
             tag_url = "<a href='/tag/{}' title='Recherche de {}'>{}</a>"\
                 .format(tag, tag, tag)
             #pattern = re.compile(" "+tag+"[\s\.,;]", re.IGNORECASE)
-            pattern = re.compile(tag, re.IGNORECASE)
+            pattern = re.compile("\b"+tag+"\b", re.IGNORECASE)
             analytics_pattern = re.compile("\(.+}\);")
-            row['s_description'] = pattern.sub(" "+tag_url+" ", row['s_description'])
+            row['s_description'] = pattern.sub(tag_url, row['s_description'])
             row['s_description'] = analytics_pattern.sub("", row['s_description'])
             row['summary'] = pattern.sub(" "+tag_url+" ", row['summary'])
             row['summary'] = analytics_pattern.sub("", row['summary'])
