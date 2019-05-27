@@ -10,7 +10,7 @@ import time
 
 def wordpress_create_post(item, params):
     url = params['url']+"posts"
-
+    print("Posting "+item["title"])
     payload = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"title\"\r\n\r\n" \
         +item["title"]+"\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data;"\
         " name=\"status\"\r\n\r\npublish\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data;"\

@@ -80,7 +80,7 @@ def summarize_description(row):
     db.commit()
 
 print("Generating summary...")
-print(articles.head())
+#print(articles.head())
 articles[["id", "description"]].apply(summarize_description, axis=1)
 # input("Updated")
 #Preprocessing
@@ -182,7 +182,7 @@ def update_description_with_tags_url(row):
     tags_id = list()
 
     try:
-        for tag in row['s_tags'].split(","):
+        for tag in set(row['s_tags'].split(",")):
             if tag not in tags_list:
                 t_id = post.create_tag(tag, tags_endpoint, auth_key)
 
@@ -195,12 +195,16 @@ def update_description_with_tags_url(row):
 
             tag_url = "<a href='/tag/{}' title='Recherche de {}'>{}</a>"\
                 .format(tag, tag, tag)
+            #print(tag_url)
+            #input("T u")
             #pattern = re.compile(" "+tag+"[\s\.,;]", re.IGNORECASE)
             pattern = re.compile(r"\b%s\b" % tag, re.IGNORECASE)
             analytics_pattern = re.compile("\(.+}\);")
             row['s_description'] = pattern.sub(tag_url, row['s_description'])
             row['s_description'] = analytics_pattern.sub("", row['s_description'])
-            row['summary'] = pattern.sub(" "+tag_url+" ", row['summary'])
+            row['summary'] = pattern.sub(tag_url, row['summary'])
+            #print(row['summary'])
+            #input("Sum")
             row['summary'] = analytics_pattern.sub("", row['summary'])
 
         if row['source'] != "youtube":

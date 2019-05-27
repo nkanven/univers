@@ -42,6 +42,7 @@ args = parser.parse_args()
 # print(get_info('https://www.youtube.com/watch?v=uSosZCcLr_U'))
 
 Model = models()
+i=0
 
 if args.action == "scrape":
     while True:
@@ -65,6 +66,10 @@ if args.action == "scrape":
                 with open(scrape_links, "wb") as pkl:
                     pickle.dump(scraped_links, pkl)
         print("Done with others")
+        i += 1
+        
+        if i == 3:
+            break
 
         """
         links = Model.get_links()
