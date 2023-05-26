@@ -1,7 +1,11 @@
+bs4==0.0.1
 feedparser==6.0.10
 mysqlclient==2.1.1
 nltk==3.8.1
+protobuf==3.20.3
 PyMySQL==1.0.3
 pytube==15.0.0
+requests==2.31.0
+Unidecode==1.3.6
 
 #apt install python3-mysqldb
