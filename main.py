@@ -9,6 +9,7 @@ import argparse
 import pickle
 import time
 
+
 # print(parse.wordpress("https://www.journalducameroun.com/feed/"))
 # print(get_elements("https://www.journalducameroun.com/fr/cameroun-la-banque-mondiale-menace-de-suspendre-ses-financements-cameroun/"))
 parser = argparse.ArgumentParser(
