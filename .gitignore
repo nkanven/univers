@@ -8,3 +8,4 @@ scraped_links.pkl
 **/__pycache__/
 lib/fdparser/__pycache__/
 ml_scraped_links.pkl
+venv

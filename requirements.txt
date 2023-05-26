@@ -1,7 +1,7 @@
-PyMySQL
-pytube
-mysqlclient
-feedparser
-nltk
+feedparser==6.0.10
+mysqlclient==2.1.1
+nltk==3.8.1
+PyMySQL==1.0.3
+pytube==15.0.0
 
-apt install python3-mysqldb
+#apt install python3-mysqldb
