@@ -1,6 +1,6 @@
 """Univers model class to handle CRUD operations."""
 import MySQLdb
-from _mysql_exceptions import IntegrityError
+from MySQLdb._exceptions import IntegrityError
 from lib import config
 
 
